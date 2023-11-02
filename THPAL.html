@@ -69,9 +69,57 @@
 <div class="dropdown-options">
 
 
-<a href="#" onclick="Process()"Style="font-size:1.1vw;">Human Resources</a>
+<a href="#" onclick="showLoginForm()"Style="font-size:1.1vw;">Human Resources</a>
 
 
+<div id="loginForm" class="popup">
+    <h2>Login Form</h2>
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password">
+    <button onclick="submitForm()">Submit</button>
+  </div>
+
+
+<script>
+
+
+
+function showLoginForm() {
+  var loginForm = document.getElementById("loginForm");
+  loginForm.style.display = "block";
+}
+
+function submitForm() {
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+
+  // Connect to Google Sheets API and send the data
+  // You'll need to use a library like 'axios' or 'fetch' to make the API request
+
+  // Example using 'axios' library
+  axios.post('https://script.google.com/macros/s/{YOUR_SCRIPT_ID}/exec', {
+    username: username,
+    password: password
+  })
+  .then(function (response) {
+    console.log(response.data);
+    // Handle the response from the Google Sheets API
+  })
+  .catch(function (error) {
+    console.error(error);
+    // Handle any errors that occur during the request
+  });
+
+  // Close the login form
+  var loginForm = document.getElementById("loginForm");
+  loginForm.style.display = "none";
+}
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <a href="https://transpofile.github.io/Transpofile/index.html"onclick="GeneralAffairs()"Style="font-size:1.1vw;" >General Affairs</a>
 
 
